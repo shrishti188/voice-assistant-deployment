@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <title>Voice Shopping Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(to right, #f0f2f5, #e4f5ec);
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 30px 25px;
+        }
+        h1 {
+            text-align: center;
+            color: #27ae60;
+            font-weight: 600;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        #voice-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: #27ae60;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        #voice-btn:hover {
+            background: #219150;
+        }
+        #voice-btn.listening {
+            background: #16a085;
+        }
+        #feedback {
+            margin-top: 15px;
+            font-size: 1.1em;
+            text-align: center;
+            color: #2d86a3;
+            min-height: 24px;
+        }
+        #shopping-list {
+            margin: 25px 0 15px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .item span {
+            font-size: 1em;
+        }
+        .category {
+            font-size: 0.85em;
+            color: #888;
+        }
+        #suggestions {
+            background: #e9f7ef;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.04);
+        }
+        #suggestions strong {
+            color: #2e7d32;
+        }
+        #suggestion-list div {
+            margin-top: 6px;
+        }
+        .language-selector {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #suggestion-list mark {
+        background-color: #add4a8;
+        padding: 2px 6px;
+        border-radius: 3px;
+}
+
+        select {
+            font-size: 1em;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        #search-results {
+            background: #f6fafd;
+            border: 2px solid #b2dfdb;
+            border-radius: 12px;
+            margin-top: 20px;
+            padding: 18px 14px 10px 14px;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+            font-size: 1em;
+            max-width: 100%;
+        }
+        .search-item-card {
+            background: #e3f2fd;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(44, 62, 80, 0.04);
+        }
+        #search-results mark {
+            background: #ffe082;
+            color: #2c3e50;
+            padding: 0 2px;
+            border-radius: 3px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+            #voice-btn {
+                font-size: 1em;
+                padding: 12px;
+            }
+            #search-results {
+                padding: 10px 5px 5px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Voice Shopping Assistant</h1>
+        <button id="voice-btn">🎤 Start Voice Command</button>
+        <div id="feedback">Say a command like <b>"add 2 apples"</b> or <b>"remove milk"</b></div>
+
+        <div id="shopping-list"></div>
+
+<h3>🔎 Search Results</h3>
+<div id="search-results">
+    <em>No search performed yet.</em>
+</div>
+
+
+        <div id="suggestions">
+            <strong>Suggestions:</strong>
+            <div id="suggestion-list"></div>
+        </div>
+
+        <div class="language-selector">
+            <label for="lang"><b>🌐 Language:</b></label>
+            <select id="lang">
+                <option value="en-US">English</option>
+                <option value="hi-IN">हिन्दी (Hindi)</option>
+                
+            </select>
+
+        </div>
+    </div>
+    <script src="/static/shopping/script.js"></script>
+</body>
+</html>
